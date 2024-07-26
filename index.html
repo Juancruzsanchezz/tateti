@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="contador">   
+        <p> 
+            <b id="contador_jugador1">0</b>
+            -
+            <b id="contador_jugador2">0</b>
+        </p>
+    </section>
+    <section>   
+        <ul class="tabla">
+            <li class="fila">   
+                <div class="cuadrilla all" data-value="1" onclick="elegirCuadrilla(this)"></div>
+                <div class="cuadrilla all" data-value="2" onclick="elegirCuadrilla(this)"></div>
+                <div class="cuadrilla all" data-value="3" onclick="elegirCuadrilla(this)"></div>
+            </li>
+            <li class="fila">   
+                <div class="cuadrilla all" data-value="4" onclick="elegirCuadrilla(this)"></div>
+                <div class="cuadrilla all" data-value="5" onclick="elegirCuadrilla(this)"></div>
+                <div class="cuadrilla all" data-value="6" onclick="elegirCuadrilla(this)"></div>
+            </li>
+            <li class="fila">   
+                <div class="cuadrilla all" data-value="7" onclick="elegirCuadrilla(this)"></div>
+                <div class="cuadrilla all" data-value="8" onclick="elegirCuadrilla(this)"></div>
+                <div class="cuadrilla all" data-value="9" onclick="elegirCuadrilla(this)"></div>
+            </li>
+        </ul>
+    </section>
+    <section class="notificacion_degradado" id="notificacion_degradado"></section>
+    <section class="notificacion" id="notificacion">   
+            <h2>¡Felicidades gordito!</h2>
+            <p class="notificacion_jugador_titulo">"<b id="notificacion_jugador">Gordito</b>" es el ganador</p>
+            <div class="boton" id="boton_reiniciar">    
+                <p class="titulo_boton">    
+                    Jugar de nuevo
+                </p>
+            </div>
+    </section>
+</body>
+<script src="./main.js"></script>
+</html>

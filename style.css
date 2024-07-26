@@ -1,0 +1,151 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1B2735;
+}
+
+body section {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section .tabla {    
+    display: flex;
+    flex-direction: column;
+    width: 375px;
+    height: 375px;
+
+}
+
+section .tabla li {  
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 33.333333333%;
+    list-style: none;
+}
+
+section .tabla li .cuadrilla {  
+    flex: 1;
+    background-color: #264A72;
+    border: 3px solid #1B2735;
+    border-radius: 5px;
+    transition: all 0.5s;
+}
+
+section .tabla li .cuadrilla:hover {    
+    background-color: #264972b7;
+}
+
+section .tabla li .cuadrilla.j1 {   
+    background: #46d5fb;
+}
+
+section .tabla li .cuadrilla.j2 {   
+    background: #F5E9CF;
+}
+
+section.notificacion.active {   
+    transform: translate(0%, 0%);
+}
+section.notificacion {  
+    flex-direction: column;
+    position: absolute;
+    transform: translateY(-1000%);
+    width: 325px;
+    height: 180px;
+    background-color: #1B2735;
+    border-radius: 5px;
+    transition: all 1s;
+}
+
+.notificacion h2 {  
+    font-size: 20px;
+    font-weight: 600;
+    color: #7DB9B6;
+    margin-bottom: 10px;
+}
+
+.notificacion p.notificacion_jugador_titulo {   
+    font-size: 14px;
+    font-weight: 600;
+    color: #F5E9CF;
+    margin-bottom: 15px;
+}
+
+.notificacion_degradado.active {    
+    opacity: 1;
+    z-index: 0;
+}
+.notificacion_degradado {   
+    display: flex;
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1b273598;
+    transition: all 1s;
+}
+
+.boton { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 40px;
+    background-color: #7DB9B6;
+    border-radius: 5px;
+    transition: all 0.5s;
+}
+
+.boton p {  
+    font-size: 14px;
+    font-weight: 600;
+    color: #F5E9CF;
+}
+
+.boton:hover {  
+    background-color: #F5E9CF;
+}
+
+.boton:hover p {    
+    color: #7DB9B6;
+}
+
+.contador { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0%;
+    width: 225px;
+    height: 45px;
+    background-color: #F5E9CF;
+    border-radius: 0px 0px 35px 35px;
+}
+
+.contador p { 
+    display: flex;  
+    font-size: 40px;
+    font-weight: 600;
+    gap: 10px;
+    color: #1B2735;
+}
+
+.contador p b { 
+    color: #1B2735;
+}
+
