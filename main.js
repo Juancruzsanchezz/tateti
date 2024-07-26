@@ -12,7 +12,6 @@ const combinacionesGanadoras = [
     [1,5,9],
     [3,5,7]
 ];
-
 let notificacion = document.getElementById("notificacion");
 let degradadoNotificacion = document.getElementById("notificacion_degradado");
 let nombreGanador = document.getElementById("notificacion_jugador");
@@ -70,13 +69,27 @@ function tateti(jugador, nombreJugador) {
         }
 
         if (verificarBandera(bandera, nombreJugador)) {    
-            console.log("El ganador es " + nombreJugador);
             notificacion.classList.add("active");
             degradadoNotificacion.classList.add("active");
-            nombreGanador.textContent = nombreJugador;
+            notificacion.children[0].textContent = "¡Felicidades gordito!";
+            notificacion.children[1].textContent = '"' + nombreJugador + '" es el ganador';
             aumentarContador(nombreJugador);
-            
-        }     
+            if (nombreJugador === "Jugador 1") {
+                animacionGanador(contadorJugador1, contadorJugador2);
+            } else {    
+                animacionGanador(contadorJugador2, contadorJugador1);
+            }
+            break;
+        } 
+        if ((empate())) {
+            console.log("empate");
+            let cadenaVacia = " ";
+            notificacion.classList.add("active");
+            notificacion.children[0].textContent = "¡Empate!";
+            notificacion.children[1].textContent = "Preciona el boton para jugar de nuevo";
+            notificacion.children[1].children[0].textContent = cadenaVacia;
+            break;
+        }
     }
 
 }
@@ -93,11 +106,33 @@ function verificarBandera(bandera) {
 function aumentarContador(nombreGanador) {   
     if (nombreGanador === "Jugador 1") {    
         let contador = parseInt(contadorJugador1.textContent, 10);
-        contador += 1;
+        contador++;
         contadorJugador1.textContent = contador;
     } else {    
         let contador = parseInt(contadorJugador2.textContent, 10);
-        contador += 1; 
+        contador++;
         contadorJugador2.textContent = contador;
     }
+}
+
+function animacionGanador(contadorGanador, contadorPerdedor) {    
+    let valorContador = parseInt(contadorGanador.textContent, 10);
+    contadorGanador.classList.add("ganador");
+    contadorGanador.textContent = "!GANADOR¡"
+    contadorPerdedor.classList.add("perdedor");
+    setTimeout(() => {
+        contadorGanador.classList.remove("ganador");
+        contadorGanador.textContent = valorContador;
+        contadorPerdedor.classList.remove("perdedor");
+    }, 4000);
+}
+
+function empate() { 
+    let i = 0;
+    cuadrillas.forEach(cuadrilla => {   
+        if (cuadrilla.classList.contains("j1") || cuadrilla.classList.contains("j2")) { 
+            i++;
+        }
+    });
+    if (i === 9) return true;
 }
