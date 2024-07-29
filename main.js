@@ -25,11 +25,13 @@ const contadorJugador1 = document.getElementById("contador_jugador1");
 const contadorJugador2 = document.getElementById("contador_jugador2");
 
 botonLogin.addEventListener("click", () => {    
-    if (nombreJugador1 === '' || nombreJugador2 === '') {
+    let valorInput1 = document.getElementById("nombre-jugador-1").value;
+    let valorInput2 = document.getElementById("nombre-jugador-2").value;
+    if (valorInput1 === '' || valorInput2 === '') {
         notificacionPopUp("¡Uno de los campos esta incompleto!");
     } else { 
-        nombreJugador1 = document.getElementById("nombre-jugador-1").value ;
-        nombreJugador2 = document.getElementById("nombre-jugador-2").value;  
+        nombreJugador1 = valorInput1;
+        nombreJugador2 = valorInput2;  
         login.classList.remove("active");
     }
 })
