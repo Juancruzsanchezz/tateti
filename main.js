@@ -1,4 +1,6 @@
 const cuadrillas = document.querySelectorAll(".cuadrilla");
+let nombreJugador1;
+let nombreJugador2;
 let jugador1 = [];
 let jugador2 = [];
 let turno = true; 
@@ -12,12 +14,25 @@ const combinacionesGanadoras = [
     [1,5,9],
     [3,5,7]
 ];
+let login = document.getElementById("login");
 let notificacion = document.getElementById("notificacion");
+let notificacionpopUp = document.getElementById("notificacion-pop-up");
 let degradadoNotificacion = document.getElementById("notificacion_degradado");
 let nombreGanador = document.getElementById("notificacion_jugador");
 let botonReiniciar = document.getElementById("boton_reiniciar");
+let botonLogin = document.getElementById("boton-login");
 const contadorJugador1 = document.getElementById("contador_jugador1");
 const contadorJugador2 = document.getElementById("contador_jugador2");
+
+botonLogin.addEventListener("click", () => {    
+    if (nombreJugador1 === '' || nombreJugador2 === '') {
+        notificacionPopUp("¡Uno de los campos esta incompleto!");
+    } else { 
+        nombreJugador1 = document.getElementById("nombre-jugador-1").value ;
+        nombreJugador2 = document.getElementById("nombre-jugador-2").value;  
+        login.classList.remove("active");
+    }
+})
 
 botonReiniciar.addEventListener("click", () =>  {   
     jugador1 = [];
@@ -44,14 +59,14 @@ function elegirCuadrilla(cuadrilla) {
             let valor = parseInt(cuadrilla.getAttribute('data-value'), 10);
             jugador1.push(valor); 
             console.log(jugador1);
-            tateti(jugador1, "Jugador 1");
+            tateti(jugador1, nombreJugador1);
         } else {    
             cuadrilla.classList.remove("all");
             cuadrilla.classList.add("j2");
             let valor = parseInt(cuadrilla.getAttribute('data-value'), 10);
             jugador2.push(valor);
             console.log(jugador2);
-            tateti(jugador2, "Jugador 2");
+            tateti(jugador2, nombreJugador2);
         }
         turno = !turno;
     }
@@ -68,13 +83,13 @@ function tateti(jugador, nombreJugador) {
             }
         }
 
-        if (verificarBandera(bandera, nombreJugador)) {    
+        if (verificarBandera(bandera)) {    
             notificacion.classList.add("active");
-            degradadoNotificacion.classList.add("active");
             notificacion.children[0].textContent = "¡Felicidades gordito!";
             notificacion.children[1].textContent = '"' + nombreJugador + '" es el ganador';
+            degradadoNotificacion.classList.add("active");
             aumentarContador(nombreJugador);
-            if (nombreJugador === "Jugador 1") {
+            if (nombreJugador === nombreJugador1) {
                 animacionGanador(contadorJugador1, contadorJugador2);
             } else {    
                 animacionGanador(contadorJugador2, contadorJugador1);
@@ -82,12 +97,10 @@ function tateti(jugador, nombreJugador) {
             break;
         } 
         if ((empate())) {
-            console.log("empate");
-            let cadenaVacia = " ";
             notificacion.classList.add("active");
             notificacion.children[0].textContent = "¡Empate!";
             notificacion.children[1].textContent = "Preciona el boton para jugar de nuevo";
-            notificacion.children[1].children[0].textContent = cadenaVacia;
+            degradadoNotificacion.classList.add("active");
             break;
         }
     }
@@ -135,4 +148,12 @@ function empate() {
         }
     });
     if (i === 9) return true;
+}
+
+function notificacionPopUp(mensaje) {  
+    notificacionpopUp.children[0].textContent = mensaje;
+    notificacionpopUp.classList.add("active");
+    setTimeout(() => {
+        notificacionpopUp.classList.remove("active")
+    }, 4000);
 }

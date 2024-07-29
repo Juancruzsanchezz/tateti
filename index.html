@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta placeholder="Nombre jugador"viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,6 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <section class="login active" id="login"> 
+        <article>   
+            <h1>    
+                Nueva partida
+            </h1>
+            <div class="login_jugador">   
+                <div></div>
+                <input type="text" placeholder="Nombre jugador 1" id="nombre-jugador-1">
+            </div>
+            <div class="login_jugador">   
+                <div></div>
+                <input type="text" placeholder="Nombre jugador 2" id="nombre-jugador-2">
+            </div>
+            <div class="boton" id="boton-login">    
+                <p class="titulo_boton">    
+                    Comenzar
+                </p>
+            </div>
+        </article>
+    </section>
     <section class="contador">   
         <p> 
             <b class="j1" id="contador_jugador1">0</b>
@@ -47,6 +67,9 @@
                 </p>
             </div>
     </section>
+    <div class="notificacion_pop_up" id="notificacion-pop-up">   
+        <p></p>
+    </div>
 </body>
 <script src="./main.js"></script>
 </html>
