@@ -30,8 +30,8 @@ botonLogin.addEventListener("click", () => {
     if (valorInput1 === '' || valorInput2 === '') {
         notificacionPopUp("¡Uno de los campos esta incompleto!");
     } else { 
-        nombreJugador1 = valorInput1;
-        nombreJugador2 = valorInput2;  
+        nombreJugador1 = valorInput1.trim();
+        nombreJugador2 = valorInput2.trim();  
         login.classList.remove("active");
     }
 })
@@ -119,7 +119,7 @@ function verificarBandera(bandera) {
 }
 
 function aumentarContador(nombreGanador) {   
-    if (nombreGanador === "Jugador 1") {    
+    if (nombreGanador === nombreJugador1) {    
         let contador = parseInt(contadorJugador1.textContent, 10);
         contador++;
         contadorJugador1.textContent = contador;
