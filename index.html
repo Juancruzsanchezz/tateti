@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="notch.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -30,11 +31,28 @@
             </div>
         </article>
     </section>
-    <section class="contador">   
+    <section class="notch" id="notch">   
         <p> 
             <b class="j1" id="contador_jugador1">0</b>
             <b class="j2" id="contador_jugador2">0</b>
         </p>
+        <div class="panel"> 
+            <div class="panel_icon md" id="save">   
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.616 2.17157L17.3231 1.46447V1.46447L16.616 2.17157ZM19.8284 5.38398L19.1213 6.09109L19.8284 5.38398ZM5 21C5 21.5523 5.44772 22 6 22C6.55228 22 7 21.5523 7 21H5ZM15 21V22H17V21H15ZM14 7C14.5523 7 15 6.55228 15 6C15 5.44772 14.5523 5 14 5V7ZM8 5C7.44772 5 7 5.44771 7 6C7 6.55228 7.44772 7 8 7V5ZM20 8.21241V17H22V8.21241H20ZM17 20H5V22H17V20ZM2 17V5H0V17H2ZM5 2H13.7876V0H5V2ZM15.9089 2.87868L19.1213 6.09109L20.5355 4.67688L17.3231 1.46447L15.9089 2.87868ZM13.7876 2C14.5832 2 15.3463 2.31607 15.9089 2.87868L17.3231 1.46447C16.3854 0.526784 15.1137 0 13.7876 0V2ZM5 20C3.34315 20 2 18.6569 2 17H0C0 19.7614 2.23858 22 5 22V20ZM20 17C20 18.6569 18.6569 20 17 20V22C19.7614 22 22 19.7614 22 17H20ZM22 8.21241C22 6.88633 21.4732 5.61456 20.5355 4.67688L19.1213 6.09109C19.6839 6.6537 20 7.41676 20 8.21241H22ZM2 5C2 3.34315 3.34315 2 5 2V0C2.23858 0 0 2.23858 0 5H2ZM7 21V15H5V21H7ZM8 14H14V12H8V14ZM15 15V21H17V15H15ZM14 14C14.5523 14 15 14.4477 15 15H17C17 13.3431 15.6569 12 14 12V14ZM7 15C7 14.4477 7.44772 14 8 14V12C6.34315 12 5 13.3431 5 15H7ZM14 5L8 5V7L14 7V5Z" fill="#F5E9CF"/>
+                    </svg>
+            </div>
+            <div class="panel_icon md">   
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.22222 7V17C3.22222 19.2091 5.21207 21 7.66667 21H14.3333C16.7879 21 18.7778 19.2091 18.7778 17V7M13.2222 10V16M8.77778 10L8.77778 16M15.4444 4L13.8819 1.8906C13.4698 1.3342 12.7759 1 12.0329 1H9.96708C9.22407 1 8.53022 1.3342 8.11807 1.8906L6.55556 4M15.4444 4H6.55556M15.4444 4H21M6.55556 4H1" stroke="#F5E9CF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+            </div>
+            <div class="panel_icon lg">   
+                <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.2214 8.84168L13.6177 10.2369C13.1333 10.6584 13.1333 11.3417 13.6177 11.7631L15.2214 13.1584M13.981 11L21.4233 11M1.57715 16.3959V5.60412M16.4618 16.3959C16.4618 17.5879 15.3511 18.5542 13.981 18.5542H9.01946M16.4618 5.60412C16.4618 4.4121 15.3511 3.44577 13.981 3.44577H9.01946M2.68183 19.195L5.1626 20.6339C6.81121 21.5901 9.01946 20.5619 9.01946 18.838V3.16198C9.01946 1.43812 6.81121 0.409895 5.1626 1.36612L2.68183 2.80503C1.99169 3.20533 1.57715 3.87923 1.57715 4.60088V17.3991C1.57715 18.1208 1.99169 18.7947 2.68183 19.195Z" stroke="#F5E9CF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+            </div>
+        </div>
     </section>
     <section>   
         <ul class="tabla">

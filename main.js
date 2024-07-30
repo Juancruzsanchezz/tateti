@@ -1,4 +1,5 @@
 const cuadrillas = document.querySelectorAll(".cuadrilla");
+const notch = document.getElementById("notch");
 let nombreJugador1;
 let nombreJugador2;
 let jugador1 = [];
@@ -23,6 +24,67 @@ let botonReiniciar = document.getElementById("boton_reiniciar");
 let botonLogin = document.getElementById("boton-login");
 const contadorJugador1 = document.getElementById("contador_jugador1");
 const contadorJugador2 = document.getElementById("contador_jugador2");
+const save = document.getElementById("save");
+
+let partidas = [];
+save.addEventListener("click", () => {  
+    const partida = [   
+        nombreJugador1, 
+        parseInt(contadorJugador1.textContent, 10), 
+        nombreJugador2, 
+        parseInt(contadorJugador2.textContent, 10)
+    ];
+
+    let partidasGuardadas = localStorage.getItem('partidas');
+    
+    if (partidasGuardadas) {
+        partidas = JSON.parse(partidasGuardadas);
+    }
+
+    let partidaRepetida = false;   
+    for (let i = 0; i < partidas.length; i++) {
+        if (sonArraysIguales(partidas[i], partida)) {
+            notificacionPopUp("¡Esta partida ya está guardada!");
+            partidaRepetida = true;
+            break;
+        }
+    }
+
+    if (!partidaRepetida) {
+        partidas.push(partida);
+        localStorage.setItem('partidas', JSON.stringify(partidas));
+        notificacionPopUp("¡Partida guardada!");
+    }
+});
+
+
+function sonArraysIguales(array1, array2) {
+    if (array1.length !== array2.length) {
+        return false;
+    }
+
+    for (let i = 0; i < array1.length; i++) {
+        if (array1[i] !== array2[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+notch.addEventListener("click", (e) => {
+    e.stopPropagation(); 
+    notch.classList.add("active");
+
+});
+document.addEventListener('click', () => {
+    notch.classList.remove('active');
+});
+
+notch.addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
 
 botonLogin.addEventListener("click", () => {    
     let valorInput1 = document.getElementById("nombre-jugador-1").value;
