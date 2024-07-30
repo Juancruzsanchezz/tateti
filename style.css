@@ -48,15 +48,35 @@ section.login article .login_botones {
 section.login article.face {    
     position: absolute;
     backface-visibility: hidden;
-    transition: all 1s;
+    transition: transform 1s;
+}
+
+@supports (-webkit-transform-style: preserve-3d) {
+    section.login article.face {
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+
+    section.login article.front {    
+        -webkit-transform: perspective(600px) rotateY(0deg);
+        transform: perspective(600px) rotateY(0deg);
+    }
+
+    section.login article.back { 
+        background-color: #212E3C;
+        -webkit-transform: perspective(600px) rotateY(180deg);
+        transform: perspective(600px) rotateY(180deg);
+    }
 }
 section.login article.front {    
     transform: perspective(600px) rotateY(0deg);
 }
+
 section.login article.back { 
     background-color: #212E3C;
     transform: perspective(600px) rotateY(180deg);
 }
+
 .login_partidas {   
     display: flex;
     flex-direction: column;

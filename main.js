@@ -74,6 +74,7 @@ save.addEventListener("click", () => {
 
                 localStorage.setItem('partidas', JSON.stringify(partidas));
                 notificacionPopUp("¡Partida guardada!");
+                cargarPartidas();
 
                 botonReiniciar.style.display = 'flex';
                 botonSobreguardar.style.display = 'none';
@@ -88,6 +89,7 @@ save.addEventListener("click", () => {
         partidas.push(partida);
         localStorage.setItem('partidas', JSON.stringify(partidas));
         notificacionPopUp("¡Partida guardada!");
+        cargarPartidas();
     }
 });
 
