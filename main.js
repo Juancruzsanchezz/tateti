@@ -1,11 +1,11 @@
-const cuadrillas = document.querySelectorAll(".cuadrilla");
-const notch = document.getElementById("notch");
+let cuadrillas = document.querySelectorAll(".cuadrilla");
+let notch = document.getElementById("notch");
 let nombreJugador1;
 let nombreJugador2;
 let jugador1 = [];
 let jugador2 = [];
 let turno = true; 
-const combinacionesGanadoras = [    
+let combinacionesGanadoras = [    
     [1,2,3],
     [4,5,6],
     [7,8,9],
@@ -21,14 +21,22 @@ let notificacionpopUp = document.getElementById("notificacion-pop-up");
 let degradadoNotificacion = document.getElementById("notificacion_degradado");
 let nombreGanador = document.getElementById("notificacion_jugador");
 let botonReiniciar = document.getElementById("boton_reiniciar");
-let botonLogin = document.getElementById("boton-login");
-const contadorJugador1 = document.getElementById("contador_jugador1");
-const contadorJugador2 = document.getElementById("contador_jugador2");
-const save = document.getElementById("save");
+let loginPartidas = document.getElementById("login_partidas");
+let loginFront = document.getElementById("login_front");
+let loginback = document.getElementById("login_back");
+let botonLogin = document.getElementById("boton_login");
+let botonSobreguardar = document.getElementById("boton_sobreguardar");
+let botonCargar = document.getElementById("boton_cargar");
+let botonCargarPartida = document.getElementById("boton_cargar_partida");
+let botonVolverLogin = document.getElementById("boton_volver_login");
+let botonVolverPartida = document.getElementById("boton_volver_partida");
+let contadorJugador1 = document.getElementById("contador_jugador1");
+let contadorJugador2 = document.getElementById("contador_jugador2");
+let save = document.getElementById("save");
 
 let partidas = [];
 save.addEventListener("click", () => {  
-    const partida = [   
+    let partida = [   
         nombreJugador1, 
         parseInt(contadorJugador1.textContent, 10), 
         nombreJugador2, 
@@ -47,6 +55,32 @@ save.addEventListener("click", () => {
             notificacionPopUp("¡Esta partida ya está guardada!");
             partidaRepetida = true;
             break;
+        } else if (sobrePartida(partidas[i], partida)) {    
+            partidaRepetida = true;
+
+            notificacion.classList.add("active");
+            notificacion.children[0].textContent = "¡Partida existente!";
+            notificacion.children[1].textContent = "Precione 'Guardar' para reescribir la partida";
+            degradadoNotificacion.classList.add("active");
+
+            botonReiniciar.style.display = 'none';
+            botonSobreguardar.style.display = 'flex';
+
+            botonSobreguardar.addEventListener("click", () => { 
+                for (let j = 0; j < partidas[i].length; j++) {
+                    partidas[i][j] = partida[j];
+                }
+                
+
+                localStorage.setItem('partidas', JSON.stringify(partidas));
+                notificacionPopUp("¡Partida guardada!");
+
+                botonReiniciar.style.display = 'flex';
+                botonSobreguardar.style.display = 'none';
+                notificacion.classList.remove("active");
+                degradadoNotificacion.classList.remove("active");
+            });
+            break;
         }
     }
 
@@ -56,21 +90,6 @@ save.addEventListener("click", () => {
         notificacionPopUp("¡Partida guardada!");
     }
 });
-
-
-function sonArraysIguales(array1, array2) {
-    if (array1.length !== array2.length) {
-        return false;
-    }
-
-    for (let i = 0; i < array1.length; i++) {
-        if (array1[i] !== array2[i]) {
-            return false;
-        }
-    }
-
-    return true;
-}
 
 notch.addEventListener("click", (e) => {
     e.stopPropagation(); 
@@ -113,6 +132,35 @@ botonReiniciar.addEventListener("click", () =>  {
 
     notificacion.classList.remove("active");
     degradadoNotificacion.classList.remove("active"); 
+});
+
+botonCargar.addEventListener("click", () => {   
+    loginFront.style.transform = "perspective(600px) rotateY(180deg)";
+    loginback.style.transform = "perspective(600px) rotateY(0deg)";
+});
+
+botonVolverLogin.addEventListener("click", () => {  
+    loginFront.style.transform = "perspective(600px) rotateY(0deg)";
+    loginback.style.transform = "perspective(600px) rotateY(180deg)";
+});
+
+botonCargarPartida.addEventListener("click", () => {   
+    let partidaSeleccionada = JSON.parse(localStorage.getItem("partidaSeleccionada"));
+
+    if(partidaSeleccionada === null) {  
+        notificacionPopUp("!Seleccione una partida¡");
+    } else {    
+        nombreJugador1 = partidaSeleccionada[0];
+        contadorJugador1.textContent = parseInt(partidaSeleccionada[1], 10);
+        nombreJugador2 = partidaSeleccionada[2];
+        contadorJugador2.textContent = parseInt(partidaSeleccionada[3], 10);
+
+        login.classList.remove("active");
+    }
+});
+
+botonVolverPartida.addEventListener("click", () => {    
+    login.classList.add("active");
 });
 
 function elegirCuadrilla(cuadrilla) {   
@@ -221,3 +269,91 @@ function notificacionPopUp(mensaje) {
         notificacionpopUp.classList.remove("active")
     }, 4000);
 }
+
+function sonArraysIguales(array1, array2) {
+    if (array1.length !== array2.length) {
+        return false;
+    }
+
+    for (let i = 0; i < array1.length; i++) {
+        if (array1[i] !== array2[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function sobrePartida(array1, array2) {
+    if ((array1[0] === array2[0]) && (array1[2] === array2[2])) {
+        if ((array1[1] !== array2[1]) || (array1[3] !== array2[3])) { 
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function datosPartida(partida) {  
+    let partidasGuardadas = document.querySelectorAll(".login_partidas-partida");
+    partidasGuardadas.forEach(elem => {  
+        elem.style.backgroundColor = "#494747"
+    })
+
+    partida.style.backgroundColor = "#264A72";
+    
+    let nombre1 = partida.children[0].children[1].textContent;
+    let puntajeJugador1 = partida.children[0].children[0].textContent;
+    let puntajeJugador2 = partida.children[1].children[1].textContent;
+    let nombre2 = partida.children[1].children[0].textContent;
+    
+    let partidaSeleccionada = [ 
+        nombre1,
+        puntajeJugador1,
+        nombre2,
+        puntajeJugador2
+    ];
+
+    localStorage.setItem("partidaSeleccionada", JSON.stringify(partidaSeleccionada));
+}
+
+function vaciarPartidaSeleccionada() {  
+    let partidaSeleccionada = localStorage.getItem("partidaSeleccionada");
+
+    partidaSeleccionada = null;
+
+    localStorage.setItem("partidaSeleccionada", partidaSeleccionada);
+}
+
+window.addEventListener("DOMContentLoaded", () => { 
+    vaciarPartidaSeleccionada();
+})
+
+function cargarPartidas() {  
+    let partidas = JSON.parse(localStorage.getItem("partidas"));
+    if(!(localStorage.getItem("partidas"))) {  
+        let aviso = document.createElement("p");
+        aviso.textContent = "!No hay partidas guardadas¡";
+        aviso.style.color = "#F5E9CF"
+        loginPartidas.appendChild(aviso);
+    } else {    
+        partidas.forEach( partida => {  
+            let contenedorPartida = document.createElement("div");
+            contenedorPartida.classList.add("login_partidas-partida");
+            contenedorPartida.setAttribute('onclick', 'datosPartida(this)');
+            contenedorPartida.innerHTML = `   
+                    <div class="partida_jugador">   
+                        <b class="partida_jugador-puntaje j1">${partida[1]}</b>
+                        <p class="partida_jugador-nombre">${partida[0]}</p>
+                    </div>
+                    <div class="partida_jugador">   
+                        <p class="partida_jugador-nombre">${partida[2]}</p>
+                        <b class="partida_jugador-puntaje j2">${partida[3]}</b>
+                    </div>
+            `;
+            loginPartidas.appendChild(contenedorPartida);
+        });
+    }
+}
+
+cargarPartidas();

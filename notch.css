@@ -9,7 +9,7 @@
     z-index: 2;
     width: 225px;
     height: 45px;
-    background-color: #264A72;
+    background-color: #041629;
     border-radius: 35px;
     transition: all 0.6s;
 }.notch p { 
@@ -28,7 +28,7 @@
     align-items: center;
     width: 35px;
     height: 35px;
-    color: #264A72;
+    color: #041629;
     border-radius: 35px;
     transition: all 1s;
 }.notch p b.j1 {  
@@ -60,19 +60,26 @@
     padding: 10px 15px;
     gap: 15px;
 }
-.notch.active .panel .panel_icon { 
+.panel_icon { 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
     background-color: #1b2735;
     border-radius: 5px;
+    transition: all 0.5s;
 }
-.notch.active .panel .panel_icon.md { 
+.panel_icon.md { 
     flex: 1 1 calc(50% - 10px); 
     width: 60px;
 }
-.notch.active .panel .panel_icon.lg {
+.panel_icon.lg {
     flex: 1 1 100%;  
     width: 130px;
+}
+.panel_icon:hover.md { 
+    background-color: #2d3a4a;
+}
+.panel_icon:hover.lg { 
+    background-color: #2d3a4a;
 }

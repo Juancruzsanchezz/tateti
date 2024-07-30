@@ -12,7 +12,7 @@
 </head>
 <body>
     <section class="login active" id="login"> 
-        <article>   
+        <article class=" face front" id="login_front">   
             <h1>    
                 Nueva partida
             </h1>
@@ -24,10 +24,36 @@
                 <div></div>
                 <input type="text" placeholder="Nombre jugador 2" id="nombre-jugador-2">
             </div>
-            <div class="boton" id="boton-login">    
-                <p class="titulo_boton">    
-                    Comenzar
-                </p>
+            <div class="login_botones">
+                <div class="boton" id="boton_login">
+                    <p class="titulo_boton">
+                        Comenzar
+                    </p>
+                </div>
+                <div class="panel_icon md" id="boton_cargar">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.5 9L10.1161 10.2929C10.6043 10.6834 11.3957 10.6834 11.8839 10.2929L13.5 9M11 5V10M1 18V4C1 2.34315 2.67893 1 4.75 1H17.25C19.3211 1 21 2.34315 21 4V15M1 18C1 19.6569 2.67893 21 4.75 21H17.25C19.3211 21 21 19.6569 21 18V15M1 18C1 16.3431 2.67893 15 4.75 15H21" stroke="#F5E9CF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+        </article>
+        <article class="face back" id="login_back">   
+            <h1>    
+                Cargar partida
+            </h1>
+            <div class="login_partidas" id="login_partidas">   
+            </div>
+            <div class="login_botones">
+                <div class="boton" id="boton_cargar_partida">
+                    <p class="titulo_boton">
+                        Cargar
+                    </p>
+                </div>
+                <div class="panel_icon md" id="boton_volver_login">
+                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.2214 8.84168L13.6177 10.2369C13.1333 10.6584 13.1333 11.3417 13.6177 11.7631L15.2214 13.1584M13.981 11L21.4233 11M1.57715 16.3959V5.60412M16.4618 16.3959C16.4618 17.5879 15.3511 18.5542 13.981 18.5542H9.01946M16.4618 5.60412C16.4618 4.4121 15.3511 3.44577 13.981 3.44577H9.01946M2.68183 19.195L5.1626 20.6339C6.81121 21.5901 9.01946 20.5619 9.01946 18.838V3.16198C9.01946 1.43812 6.81121 0.409895 5.1626 1.36612L2.68183 2.80503C1.99169 3.20533 1.57715 3.87923 1.57715 4.60088V17.3991C1.57715 18.1208 1.99169 18.7947 2.68183 19.195Z" stroke="#F5E9CF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
             </div>
         </article>
     </section>
@@ -47,7 +73,7 @@
                     <path d="M3.22222 7V17C3.22222 19.2091 5.21207 21 7.66667 21H14.3333C16.7879 21 18.7778 19.2091 18.7778 17V7M13.2222 10V16M8.77778 10L8.77778 16M15.4444 4L13.8819 1.8906C13.4698 1.3342 12.7759 1 12.0329 1H9.96708C9.22407 1 8.53022 1.3342 8.11807 1.8906L6.55556 4M15.4444 4H6.55556M15.4444 4H21M6.55556 4H1" stroke="#F5E9CF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
             </div>
-            <div class="panel_icon lg">   
+            <div class="panel_icon lg" id="boton_volver_partida">   
                 <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.2214 8.84168L13.6177 10.2369C13.1333 10.6584 13.1333 11.3417 13.6177 11.7631L15.2214 13.1584M13.981 11L21.4233 11M1.57715 16.3959V5.60412M16.4618 16.3959C16.4618 17.5879 15.3511 18.5542 13.981 18.5542H9.01946M16.4618 5.60412C16.4618 4.4121 15.3511 3.44577 13.981 3.44577H9.01946M2.68183 19.195L5.1626 20.6339C6.81121 21.5901 9.01946 20.5619 9.01946 18.838V3.16198C9.01946 1.43812 6.81121 0.409895 5.1626 1.36612L2.68183 2.80503C1.99169 3.20533 1.57715 3.87923 1.57715 4.60088V17.3991C1.57715 18.1208 1.99169 18.7947 2.68183 19.195Z" stroke="#F5E9CF" stroke-width="2" stroke-linecap="round"/>
                     </svg>
@@ -82,6 +108,11 @@
             <div class="boton" id="boton_reiniciar">    
                 <p class="titulo_boton">    
                     Jugar de nuevo
+                </p>
+            </div>
+            <div class="boton" id="boton_sobreguardar" style="display: none;">    
+                <p class="titulo_boton">    
+                    Guardar
                 </p>
             </div>
     </section>
