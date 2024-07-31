@@ -30,6 +30,7 @@ let botonCargar = document.getElementById("boton_cargar");
 let botonCargarPartida = document.getElementById("boton_cargar_partida");
 let botonVolverLogin = document.getElementById("boton_volver_login");
 let botonVolverPartida = document.getElementById("boton_volver_partida");
+let botonBorrarPartida = document.getElementById("borrar_partida");
 let contadorJugador1 = document.getElementById("contador_jugador1");
 let contadorJugador2 = document.getElementById("contador_jugador2");
 let save = document.getElementById("save");
@@ -153,9 +154,9 @@ botonCargarPartida.addEventListener("click", () => {
         notificacionPopUp("!Seleccione una partida¡");
     } else {    
         nombreJugador1 = partidaSeleccionada[0];
-        contadorJugador1.textContent = parseInt(partidaSeleccionada[1], 10);
+        contadorJugador1.textContent = partidaSeleccionada[1]
         nombreJugador2 = partidaSeleccionada[2];
-        contadorJugador2.textContent = parseInt(partidaSeleccionada[3], 10);
+        contadorJugador2.textContent = partidaSeleccionada[3]
 
         login.classList.remove("active");
     }
@@ -163,6 +164,29 @@ botonCargarPartida.addEventListener("click", () => {
 
 botonVolverPartida.addEventListener("click", () => {    
     login.classList.add("active");
+});
+
+botonBorrarPartida.addEventListener("click", () => { 
+    let partidasLocal = JSON.parse(localStorage.getItem("partidas"));   
+    let partidaSeleccionada = JSON.parse(localStorage.getItem("partidaSeleccionada"));
+
+    if(partidaSeleccionada === null) {   
+        notificacionPopUp("!Seleccione una partida¡");
+    } else {    
+        for (let i = 0; i < partidasLocal.length; i++) {
+            if (sonArraysIguales(partidasLocal[i], partidaSeleccionada)) {
+                partidasLocal.splice(i, 1);
+                localStorage.setItem("partidas", JSON.stringify(partidasLocal));
+                partidaSeleccionada = null;
+
+                login.classList.add("active");
+                notificacionPopUp("!Partida eliminada¡");
+                cargarPartidas();
+                
+                break;
+            }
+        }
+    }
 });
 
 function elegirCuadrilla(cuadrilla) {   
@@ -311,9 +335,9 @@ function datosPartida(partida) {
     
     let partidaSeleccionada = [ 
         nombre1,
-        puntajeJugador1,
+        parseInt(puntajeJugador1, 10),
         nombre2,
-        puntajeJugador2
+        parseInt(puntajeJugador2, 10)
     ];
 
     localStorage.setItem("partidaSeleccionada", JSON.stringify(partidaSeleccionada));
@@ -339,8 +363,12 @@ function cargarPartidas() {
         aviso.style.color = "#F5E9CF"
         loginPartidas.appendChild(aviso);
     } else {    
+
+        loginPartidas.innerHTML = ``;
+
         partidas.forEach( partida => {  
             let contenedorPartida = document.createElement("div");
+
             contenedorPartida.classList.add("login_partidas-partida");
             contenedorPartida.setAttribute('onclick', 'datosPartida(this)');
             contenedorPartida.innerHTML = `   

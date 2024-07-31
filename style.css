@@ -36,6 +36,7 @@ section.login article {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 340px;
     padding: 60px 40px;
     background-color: #264A72;
     border-radius: 10px;
@@ -162,8 +163,8 @@ section.login article .login_jugador:nth-child(3) div {
 section .tabla {    
     display: flex;
     flex-direction: column;
-    width: 375px;
-    height: 375px;
+    width: 325px;
+    height: 325px;
 
 }
 section .tabla li {  
